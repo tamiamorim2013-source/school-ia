@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School IA — Ferramentas para estudar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">🎓 School <span>IA</span></div>
+    <button id="themeBtn" aria-label="Alternar tema">☀️</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="tag">APRENDA DE UM JEITO MAIS FÁCIL</p>
+        <h1>Seu espaço para <span>estudar melhor.</span></h1>
+        <p class="subtitle">Ferramentas simples para ajudar nos estudos, organizar tarefas e praticar conteúdos.</p>
+        <a class="primary" href="#ferramentas">Começar agora ↓</a>
+      </div>
+      <div class="robot">🤖<div>School IA</div></div>
+    </section>
+
+    <section id="ferramentas">
+      <h2>🧰 Ferramentas</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="icon">🧮</div>
+          <h3>Calculadora</h3>
+          <p>Faça contas rapidamente.</p>
+          <input id="calc" placeholder="Ex.: 25*4+10">
+          <button onclick="calcular()">Calcular</button>
+          <strong id="resultado"></strong>
+        </article>
+
+        <article class="card">
+          <div class="icon">📚</div>
+          <h3>Quiz rápido</h3>
+          <p>Teste seus conhecimentos.</p>
+          <button onclick="novoQuiz()">Começar quiz</button>
+          <p id="quizPergunta" class="quiz"></p>
+          <div id="quizOpcoes"></div>
+        </article>
+
+        <article class="card">
+          <div class="icon">⏱️</div>
+          <h3>Cronômetro</h3>
+          <p>Organize seu tempo de estudo.</p>
+          <div id="timer">25:00</div>
+          <button onclick="iniciarTimer()">Iniciar</button>
+          <button class="secondary" onclick="pararTimer()">Parar</button>
+          <button class="secondary" onclick="resetTimer()">Resetar</button>
+        </article>
+
+        <article class="card">
+          <div class="icon">🔄</div>
+          <h3>Conversor</h3>
+          <p>Converta metros, centímetros e quilômetros.</p>
+          <input id="metros" type="number" placeholder="Metros">
+          <button onclick="converter()">Converter</button>
+          <strong id="conversao"></strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="about">
+      <h2>💡 School IA</h2>
+      <p>Uma ideia criada para deixar o estudo mais prático, organizado e divertido.</p>
+    </section>
+  </main>
+
+  <footer>© 2026 School IA • Feito para estudar 🚀</footer>
+  <script src="script.js"></script>
+</body>
+</html>
