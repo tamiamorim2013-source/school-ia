@@ -73,5 +73,100 @@
 
   <footer>© 2026 School IA • Feito para estudar 🚀</footer>
   <script src="script.js"></script>
+<!-- 🤖 Assistente IA — 100% Grátis, Sem Cadastro, Sem Chave -->
+<style>
+  .ia-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    border-radius: 16px;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  .ia-container h2 { text-align: center; margin-top: 0; }
+  .ia-caixa-entrada {
+    width: 100%;
+    height: 120px;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  .ia-botao {
+    width: 100%;
+    padding: 15px;
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .ia-botao:hover { background: #059669; }
+  .ia-botao:disabled { background: #6b7280; cursor: not-allowed; }
+  .ia-resultado {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    color: #333;
+    border-radius: 10px;
+    min-height: 100px;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+  .ia-resultado strong { color: #2563eb; }
+</style>
+
+<div class="ia-container">
+  <h2>🤖 Assistente IA</h2>
+  <textarea 
+    class="ia-caixa-entrada" 
+    id="iaPergunta" 
+    placeholder="Escreva o que você quer...&#10;Ex: Escreva um texto, explique algo, resuma..."></textarea>
+  <button class="ia-botao" id="iaBotao" onclick="gerarIA()">✨ Gerar com IA</button>
+  <div class="ia-resultado">
+    <strong>📄 Resultado:</strong><br>
+    <span id="iaResposta">Pergunte algo acima!</span>
+  </div>
+</div>
+
+<script>
+async function gerarIA() {
+  const pergunta = document.getElementById('iaPergunta').value.trim();
+  const botao = document.getElementById('iaBotao');
+  const respostaCaixa = document.getElementById('iaResposta');
+
+  if (!pergunta) { alert('Escreva sua pergunta primeiro!'); return; }
+
+  botao.disabled = true;
+  botao.textContent = '⏳ Pensando...';
+  respostaCaixa.innerHTML = 'Aguarde... 🤔';
+
+  try {
+    const url = 'https://api.duckduckgo.com/?q=' + encodeURIComponent(pergunta) + '&format=json&no_html=1&skip_disambig=1';
+    const res = await fetch(url);
+    const dados = await res.json();
+    
+    if (dados.AbstractText && dados.AbstractText.length > 10) {
+      respostaCaixa.innerHTML = dados.AbstractText;
+    } else if (dados.RelatedTopics && dados.RelatedTopics.length > 0) {
+      respostaCaixa.innerHTML = dados.RelatedTopics[0].Text;
+    } else {
+      respostaCaixa.innerHTML = '🤔 Tente perguntar de outra forma!';
+    }
+  } catch {
+    respostaCaixa.innerHTML = '❌ Erro. Tente de novo.';
+  }
+
+  botao.disabled = false;
+  botao.textContent = '✨ Gerar com IA';
+}
+</script>
 </body>
 </html>
